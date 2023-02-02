@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SurveyApp</string>
+    <string name="yes_option_button_text">Yes</string>
+    <string name="no_option_button_text">No</string>
+    <string name="reset_button_text">Reset</string>
+    <string name="question_one">Does pineapple belong on pizza?</string>
+    <string name="question_two">Are Vikings going to win super bowl?</string>
+    <string name="question_three">Can you do a handstand?</string>
+    <string name="question_four">Would you like to go to space?</string>
+</resources>
