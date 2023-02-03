@@ -13,6 +13,18 @@ class SurveyViewModel : ViewModel() {
 
     var yesCount = 0
     var noCount = 0
+    var index = 0
+
+    fun getCurrentQuestion(): Int {
+        val currentQuestion = questions[index]
+        return currentQuestion
+    }
+
+    fun getNextQuestion(): Int {
+        index = (index + 1) % questions.size
+        val question = questions[index]
+        return question
+    }
 
     fun updateYesCount(): Int {
         yesCount += 1
@@ -35,9 +47,5 @@ class SurveyViewModel : ViewModel() {
 
     fun getNumberOfNoCount(): Int {
         return noCount
-    }
-
-    fun getAllQuestions(): MutableList<Int> {
-        return questions
     }
 }

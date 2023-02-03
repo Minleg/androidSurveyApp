@@ -1,7 +1,6 @@
 package com.bignerdranch.android.surveyapp
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -45,35 +44,29 @@ class MainActivity : AppCompatActivity() {
             resetCount()
         }
 
-        val questions = surveyViewModel.getAllQuestions()
-        val question = questions.first()
-        var index = 0
-        questionTextView.setText(question)
-        updateCount()
-
         questionTextView.setOnClickListener {
-            index = (index + 1) % questions.size
-            val next_question = questions[index]
-            questionTextView.setText(next_question)
+            val nextQuestion = surveyViewModel.getNextQuestion()
+            questionTextView.setText(nextQuestion)
             resetCount()
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
+        updateCount() // initial set up
     }
 
     private fun resetCount() {
+        /* This method resets the count of number of yeses and number of no's to zero */
         surveyViewModel.resetCount()
         yesCountTextView.text = surveyViewModel.yesCount.toString()
         noCountTextView.text = surveyViewModel.noCount.toString()
     }
 
     private fun updateCount() {
+        /* This method is to store the data when device rotates or when activity is killed and restarted.
+        * It saves the current question, and number of yeses and number of no's and updates the respective text views*/
+        val question = surveyViewModel.getCurrentQuestion()
         val yesCount = surveyViewModel.getNumberOfYesCount()
         val noCount = surveyViewModel.getNumberOfNoCount()
+        questionTextView.setText(question)
         yesCountTextView.text = yesCount.toString()
         noCountTextView.text = noCount.toString()
     }
-
 }
