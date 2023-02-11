@@ -7,4 +7,8 @@
     <string name="question_two">Are Vikings going to win super bowl?</string>
     <string name="question_three">Can you do a handstand?</string>
     <string name="question_four">Would you like to go to space?</string>
+    <string name="result">Result</string>
+    <string name="number_of_yes">Number Of Yes</string>
+    <string name="number_of_no">Number Of No</string>
+    <string name="continue_button_text">Continue</string>
 </resources>

@@ -48,4 +48,12 @@ class SurveyViewModel : ViewModel() {
     fun getNumberOfNoCount(): Int {
         return noCount
     }
+
+    fun setNumberOfYesCount(count: Int) {
+        yesCount = count
+    }
+
+    fun setNumberOfNoCount(count: Int) {
+        noCount = count
+    }
 }
