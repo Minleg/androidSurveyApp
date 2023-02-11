@@ -30,8 +30,8 @@ class SurveyResultActivity : AppCompatActivity() {
         resetButton = findViewById(R.id.reset_button)
         continueButton = findViewById(R.id.continue_button)
 
-        val yesCount = intent.getIntExtra(YES_COUNT, 100)
-        surveyViewModel.setNumberOfYesCount(yesCount)
+        val yesCount = intent.getIntExtra(YES_COUNT, 100) // gets the value sent by MainActivity
+        surveyViewModel.setNumberOfYesCount(yesCount) // updates the number of yes count
         numberOfYeses.text = yesCount.toString()
 
         val noCount = intent.getIntExtra(NO_COUNT, 100)
@@ -39,8 +39,8 @@ class SurveyResultActivity : AppCompatActivity() {
         numberOfNos.text = noCount.toString()
 
         resetButton.setOnClickListener {
-            surveyViewModel.resetCount()
-            numberOfYeses.text = surveyViewModel.getNumberOfYesCount().toString()
+            surveyViewModel.resetCount() // sets the count of Yes and count of No to zero
+            numberOfYeses.text = surveyViewModel.getNumberOfYesCount().toString() // sets the textview with value of 0 for both
             numberOfNos.text = surveyViewModel.getNumberOfNoCount().toString()
         }
 
@@ -50,7 +50,7 @@ class SurveyResultActivity : AppCompatActivity() {
             val mainIntent = Intent(this, MainActivity::class.java)
             mainIntent.putExtra(UPDATED_YES_COUNT, surveyViewModel.getNumberOfYesCount())
             mainIntent.putExtra(UPDATED_NO_COUNT, surveyViewModel.getNumberOfNoCount())
-            startActivity(mainIntent)
+            startActivity(mainIntent) // starts MainActivity and carries with it the value of updated yes and no count
         }
     }
 }

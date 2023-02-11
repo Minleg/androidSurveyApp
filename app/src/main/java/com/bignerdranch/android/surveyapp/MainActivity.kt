@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 
 const val YES_COUNT = "com.bignerdranch.android.surveyapp.YES_COUNT"
 const val NO_COUNT = "com.bignerdranch.android.surveyapp.NO_COUNT"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var questionTextView: TextView
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         resultButton = findViewById(R.id.reset_button)
 
         yesOptionButton.setOnClickListener {
-            surveyViewModel.updateYesCount()
+            surveyViewModel.updateYesCount() // updates the number of yes count in viewModel
         }
 
         noOptionButton.setOnClickListener {
@@ -43,10 +44,11 @@ class MainActivity : AppCompatActivity() {
             val noCount = surveyViewModel.getNumberOfNoCount()
             surveyIntent.putExtra(YES_COUNT, yesCount)
             surveyIntent.putExtra(NO_COUNT, noCount)
-            startActivity(surveyIntent) // starts the SurveyResultActivity
+            startActivity(surveyIntent) // starts the SurveyResultActivity which carries with it the values YES_COUNT and NO_COUNT
         }
 
         questionTextView.setOnClickListener {
+             // updates the question
             val nextQuestion = surveyViewModel.getNextQuestion()
             questionTextView.setText(nextQuestion)
         }
@@ -64,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         val question = surveyViewModel.getCurrentQuestion()
         questionTextView.setText(question)
 
-        val updatedYesCount = intent.getIntExtra(UPDATED_YES_COUNT, 0)
+        val updatedYesCount = intent.getIntExtra(UPDATED_YES_COUNT, 0) // gets value from SurveyResultActivity
         val updatedNoCount = intent.getIntExtra(UPDATED_NO_COUNT, 0)
-        surveyViewModel.setNumberOfYesCount(updatedYesCount)
+        surveyViewModel.setNumberOfYesCount(updatedYesCount) // Performs value update of number of Yes count
         surveyViewModel.setNumberOfNoCount(updatedNoCount)
     }
 }
